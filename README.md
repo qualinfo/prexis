@@ -24,7 +24,7 @@ Valid credentials:
   "message": "Valid login credentials",
   "key": "<client key>",
   "jwt": "<jwt token>",
-  "cached": "true"
+  "cached": "<true | false>"
 }
 ```
 
@@ -53,6 +53,7 @@ Insuficient credentials:
 * The `jwt token` returned string is used to make the API requests;
 * The `jwt token` has to be used **one second after** the response to avoid service misuse;
 * These token last for **60 seconds**, after that, it's necessary to renew it;
+* The `chached` response is for internal use only.
 
 
 ### How to use JWT token
