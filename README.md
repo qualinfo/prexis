@@ -235,3 +235,35 @@ Transaction not yet submitted:
   }
 }
 ```
+
+Invalid SHA256 hash format:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535981729,
+  "result": {
+    "rescode": 401,
+    "message": "Invalid SHA256 hash format",
+    "hash": "<invalid hash>"
+  }
+}
+```
+
+Hash not registered with Prëxis:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "cK19vqzgqB2",
+  "current_time": 1535981729,
+  "result": {
+    "rescode": 403,
+    "message": "Hash not registered",
+    "hash": "6baf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
