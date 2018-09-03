@@ -122,7 +122,7 @@ Hash already registered:
 {
   "code": 200,
   "status": "success",
-  "key": "cK19vqzgqB2",
+  "key": "<client key>",
   "current_time": 1535980752,
   "result": {
     "rescode": 402,
@@ -138,7 +138,7 @@ Invalid SHA256 hash format:
 {
   "code": 200,
   "status": "success",
-  "key": "cK19vqzgqB2",
+  "key": "<client key>",
   "current_time": 1535980784,
   "result": {
     "rescode": 401,
