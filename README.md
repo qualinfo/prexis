@@ -8,10 +8,10 @@ Returns the JWT token.
 
 **Parameters:**
 
-| Name        | Value                                                          |
-| ----------- | -------------------------------------------------------------- |
-| `key`       | The client key provided by Prëxis                              |
-| `password`  | Password provided by Prëxis                                    |
+| Parameter Name | Parameter Value                                                |
+| -------------- | -------------------------------------------------------------- |
+| `key`          | The client key provided by Prëxis                              |
+| `password`     | Password provided by Prëxis                                    |
 
 
 **Response example:**
@@ -77,6 +77,76 @@ None.
 }
 ```
 
+## Registering a Hash
+
+    GET https://prexis.io/api/v1/register
+
+Registers a valid SHA256 hash in Ethereum blockchain.
+
+**Parameters:**
+
+| Parameter Name | Parameter Value                                                |
+| -------------- | -------------------------------------------------------------- |
+| `hash`         | A valid SHA256 hash string without the `0x` prefix             |
+
+
+**Header:**
+
+| Header Name     | Header Value                                                   |
+| --------------- | -------------------------------------------------------------- |
+| `Authorization` | `Bearer <jwt token>`                                           |
+
+
+**Response examples:**
+
+Successfull request:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535980723,
+  "result": {
+    "credits": 9,
+    "rescode": 200,
+    "message": "Operation successfull",
+    "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
+
+Hash already registered:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "cK19vqzgqB2",
+  "current_time": 1535980752,
+  "result": {
+    "rescode": 402,
+    "message": "Hash already registered",
+    "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
+
+Invalid SHA256 hash format:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "cK19vqzgqB2",
+  "current_time": 1535980784,
+  "result": {
+    "rescode": 401,
+    "message": "Invalid SHA256 hash format",
+    "hash": "<invalid hash>"
+  }
+}
+```
 
 
 
