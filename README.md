@@ -66,6 +66,34 @@ The token must be in the header of every request.
     
 Please notice the space between the `Bearer` string and the `jwt token`.
 
+If the token value has been manipulated, any request will give the following response:
+
+```javascript
+{
+  "code": 0,
+  "status": "error",
+  "message": "Authentication failed: Signature verification failed"
+}
+```
+
+If the token has expired:
+
+```javascript
+{
+  "code": 0,
+  "status": "error",
+  "message": "Authentication failed: Expired token"
+}
+```
+If the token has been used too soon:
+
+```javascript
+{
+  "code": 0,
+  "status": "error",
+  "message": "Authentication failed: Cannot handle token prior to YYYY-MM-DDTHH:MM:SS+0000"
+}
+```
 
 ## Credit Balance
 
@@ -292,7 +320,7 @@ Hash not registered with Prëxis:
 
 ## Rate limits
 
-Prëxis API have rate limits that cap the number of requests that can be made against an endpoint in a minute. If you exceed the rate limit, your request will be throttled and you will receive `HTTP 429 Too Many Requests` responses from the API.
+Prëxis API have rate limits that cap the number of requests that can be made against an endpoint in a hour. If you exceed the rate limit, your request will be throttled and you will receive `HTTP 429 Too Many Requests` responses from the API.
 
 You can check your rate limit reading the response header:
 
