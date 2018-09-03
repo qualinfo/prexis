@@ -20,7 +20,7 @@ Returns the JWT token.
   "code": 200,
   "status": "success",
   "message": "Valid login credentials",
-  "key": "<key>",
+  "key": "<client key>",
   "jwt": "<jwt token>",
   "cached": "true"
 }
@@ -43,6 +43,39 @@ The token must be in the header of every request.
     curl --header "Authorization: Bearer <jwt token>" http://prexis.io/api/v1/credits
     
 Please notice the space between the `Bearer` string and the `jwt token`.
+
+
+## Credits
+
+    GET https://prexis.io/api/v1/credits
+
+Returns the credit balance.
+
+**Parameters:**
+
+None.
+
+**Header:**
+
+| Header Name     | Header Value                                                   |
+| --------------- | -------------------------------------------------------------- |
+| `Authorization` | `Bearer <jwt token>`                                           |
+
+
+**Response example:**
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535980547,
+  "result": {
+    "rescode": 200,
+    "message": "Operation successfull",
+    "credits": 10
+  }
+}
+```
 
 
 
