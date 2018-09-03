@@ -45,7 +45,7 @@ The token must be in the header of every request.
 Please notice the space between the `Bearer` string and the `jwt token`.
 
 
-## Credits
+## Credit Balance
 
     GET https://prexis.io/api/v1/credits
 
