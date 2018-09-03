@@ -33,3 +33,17 @@ Returns the JWT token.
 * These token last for 60 seconds, after that, it's necessary to renew it;
 * The error number uses an internal code.
 
+
+### How to use JWT token
+
+The token must be in the header of every request.
+
+**Example:**
+
+    curl --header "Authorization: Bearer <jwt token>" http://prexis.io/api/v1/credits
+    
+Please notice the space between the `Bearer` string and the `jwt token`.
+
+
+
+
