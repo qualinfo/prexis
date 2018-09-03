@@ -289,3 +289,21 @@ Hash not registered with Prëxis:
   }
 }
 ```
+
+## Rate limits
+
+Prëxis API have rate limits that cap the number of requests that can be made against an endpoint in a minute. If you exceed the rate limit, your request will be throttled and you will receive `HTTP 429 Too Many Requests` responses from the API.
+
+You can check your rate limit reading the response header:
+
+**Response Header:**
+
+| Header Name             | Header Value                                                   |
+| ----------------------- | -------------------------------------------------------------- |
+| `X-RateLimit-Limit`     | Limit                                                          |
+| `X-RateLimit-Remaining` | Your current remaining requests                                |
+
+
+
+
+
