@@ -148,5 +148,90 @@ Invalid SHA256 hash format:
 }
 ```
 
+## Get Blockchain Transaction
+
+    POST https://prexis.io/api/v1/transaction
+
+Registers a valid SHA256 hash in Ethereum blockchain.
+
+**Parameters:**
+
+| Parameter Name | Parameter Value                                                |
+| -------------- | -------------------------------------------------------------- |
+| `hash`         | A valid SHA256 hash string without the `0x` prefix             |
 
 
+**Header:**
+
+| Header Name     | Header Value                                                   |
+| --------------- | -------------------------------------------------------------- |
+| `Authorization` | `Bearer <jwt token>`                                           |
+
+
+**Response examples:**
+
+Transaction already mined in a block:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535981729,
+  "result": {
+    "transaction": {
+      "blockHash": "0xa74ef377e2b8f889390c6c2168c5dbd26533741123d3f0ad097607538fb6a14e",
+      "blockNumber": 3965065,
+      "blockchainUrl": "https://ropsten.etherscan.io/tx/0x3d0da45eeea6e5acf29a79b16d34dd565709a3874646f50ec60339345aead806",
+      "cumulativeGasUsed": 10538243,
+      "from": "0xd8f7e3adb3c93739b2600e7180d2dfaecfa3b4e9",
+      "gasUsed": 23176,
+      "timestamp": 1535980696,
+      "transactionHash": "0x3d0da45eeea6e5acf29a79b16d34dd565709a3874646f50ec60339345aead806",
+      "transactionIndex": 26
+    },
+    "rescode": 200,
+    "message": "Operation successfull",
+    "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
+
+Transaction pending (waiting for be mined):
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535981729,
+  "result": {
+    "transaction": {
+      "blockchainUrl": "https://ropsten.etherscan.io/tx/0x3d0da45eeea6e5acf29a79b16d34dd565709a3874646f50ec60339345aead806",
+      "transactionHash": "0x3d0da45eeea6e5acf29a79b16d34dd565709a3874646f50ec60339345aead806",
+    },
+    "rescode": 200,
+    "message": "Operation successfull",
+    "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
+
+Transaction not yet submitted:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535981729,
+  "result": {
+    "transaction": {
+      "transactionHash": "wait",
+    },
+    "rescode": 200,
+    "message": "Operation successfull",
+    "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
