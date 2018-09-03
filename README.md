@@ -14,7 +14,9 @@ Returns the JWT token.
 | `password`     | Password provided by Prëxis                                    |
 
 
-**Response example:**
+**Response examples:**
+
+Valid credentials:
 ```javascript
 {
   "code": 200,
@@ -26,12 +28,31 @@ Returns the JWT token.
 }
 ```
 
+Invalid credentials:
+
+```javascript
+{
+  "code": 0,
+  "status": "error",
+  "message": "No match found (<internal error code>)"
+}
+```
+
+Insuficient credentials:
+
+```javascript
+{
+  "code": 0,
+  "status": "error",
+  "message": "Data missing"
+}
+```
+
 **Important:**
 
-* The jwt returned string is used to make the API requests;
-* The jwt has to be used after one second after the response to avoid service misuse;
-* These token last for 60 seconds, after that, it's necessary to renew it;
-* The error number uses an internal code.
+* The `jwt token` returned string is used to make the API requests;
+* The `jwt token` has to be used **one second after** the response to avoid service misuse;
+* These token last for **60 seconds**, after that, it's necessary to renew it;
 
 
 ### How to use JWT token
