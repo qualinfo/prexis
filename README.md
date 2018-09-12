@@ -202,7 +202,7 @@ Invalid SHA256 hash format:
 
     POST https://prexis.io/api/v1/transaction
 
-Registers a valid SHA256 hash in Ethereum blockchain.
+Returns the transactions info, like transaction and block hashes, block number, timestamp, etc.
 
 **Parameters:**
 
