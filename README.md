@@ -251,33 +251,33 @@ Transaction already mined in a block with document:
 
 ```javascript
 {
-	"code": 200,
-	"status": "success",
-	"current_time": 1539081946,
-	"result": {
-		"doc": {
-			"ipfs": "QmSFVQjx6nB69BELd8PFn3WUhWm6YwGAkbZUyfeeoAxejR",
-			"mimetype": "image\/png",
-			"original": "television-3.png",
-			"path": "docs\/e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d",
-			"sha256": "e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d",
-			"size": 46696
-		},
-		"transaction": {
-			"blockHash": "0x8c5efe643d01edbba1066f44cb080db1ccfcf8dcb81283c95136cf06496b30fa",
-			"blockNumber": 6482269,
-			"blockchainUrl": "https:\/\/etherscan.io\/tx\/0xfd960506052311615271cc56cdb78077ca1da79f9318b481b17d56b5f6a9a034",
-			"cumulativeGasUsed": 5753996,
-			"from": "0xe7b703865cd59a11dce5faff675f61da233b9bbe",
-			"gasUsed": 23176,
-			"timestamp": 1539081708,
-			"transactionHash": "0xfd960506052311415271cc56cdb78077ca1da79f9318b481b17d56b5f6a9a034",
-			"transactionIndex": 129
-		},
-		"rescode": 200,
-		"message": "Operation successfull",
-		"hash": "e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d"
-	}
+  "code": 200,
+  "status": "success",
+  "current_time": 1539081946,
+  "result": {
+  "doc": {
+    "ipfs": "QmSFVQjx6nB69BELd8PFn3WUhWm6YwGAkbZUyfeeoAxejR",
+    "mimetype": "image\/png",
+    "original": "television-3.png",
+    "path": "docs\/e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d",
+    "sha256": "e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d",
+    "size": 46696
+  },
+  "transaction": {
+    "blockHash": "0x8c5efe643d01edbba1066f44cb080db1ccfcf8dcb81283c95136cf06496b30fa",
+    "blockNumber": 6482269,
+    "blockchainUrl": "https:\/\/etherscan.io\/tx\/0xfd960506052311615271cc56cdb78077ca1da79f9318b481b17d56b5f6a9a034",
+    "cumulativeGasUsed": 5753996,
+    "from": "0xe7b703865cd59a11dce5faff675f61da233b9bbe",
+    "gasUsed": 23176,
+    "timestamp": 1539081708,
+    "transactionHash": "0xfd960506052311415271cc56cdb78077ca1da79f9318b481b17d56b5f6a9a034",
+    "transactionIndex": 129
+  },
+  "rescode": 200,
+   "message": "Operation successfull",
+   "hash": "e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d"
+  }
 }
 ```
 
