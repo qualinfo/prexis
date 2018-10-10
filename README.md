@@ -129,7 +129,7 @@ None.
 
 ## Registering a Hash
 
-    POST https://prexis.io/api/v1/register
+    POST https://prexis.io/api/v1/registerhash
 
 Registers a valid SHA256 hash in Ethereum blockchain.
 
