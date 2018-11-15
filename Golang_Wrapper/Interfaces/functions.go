@@ -126,3 +126,43 @@ func RegisterHash(token, hash string) *HashStruct {
 	return &response
 
 }
+
+func GetTransaction(token, hash string) *TransactionStruct {
+
+	conf := config.GetConfig()
+
+	req, err := http.NewRequest("POST", conf.Prexis.ApiURL+Transaction, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	q := req.URL.Query()
+
+	q.Add("hash", hash)
+
+	req.URL.RawQuery = q.Encode()
+
+	headerValue := "Bearer " + token
+
+	req.Header.Set("Authorization", headerValue)
+
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal("Error reading response. ", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal("Error reading body. ", err)
+	}
+
+	var response TransactionStruct
+
+	json.Unmarshal(body, &response)
+
+	return &response
+
+}
