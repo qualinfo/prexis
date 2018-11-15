@@ -19,7 +19,7 @@ func GetConfig() *Configuration {
 func Init() {
 
 	viper.SetConfigName("config")
-	viper.AddConfigPath(".")
+	viper.AddConfigPath("..")
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Error reading config file, %s", err)

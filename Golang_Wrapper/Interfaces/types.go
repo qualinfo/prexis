@@ -8,3 +8,14 @@ type Authentication struct {
 	Message string `json:"message"`
 	Status  string `json:"status"`
 }
+
+type Balance struct {
+	Code        int `json:"code"`
+	CurrentTime int `json:"current_time"`
+	Result      struct {
+		Credits int    `json:"credits"`
+		Message string `json:"message"`
+		Rescode int    `json:"rescode"`
+	} `json:"result"`
+	Status string `json:"status"`
+}

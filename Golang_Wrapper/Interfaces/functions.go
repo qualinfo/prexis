@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 
 	config "../Configuration"
 )
@@ -19,6 +20,7 @@ const (
 )
 
 func Authenticate() *Authentication {
+
 	config.Init()
 	conf := config.GetConfig()
 
@@ -46,6 +48,40 @@ func Authenticate() *Authentication {
 
 	content, _ := ioutil.ReadAll(resp.Body)
 	json.Unmarshal(content, &response)
+
+	return &response
+
+}
+
+func CreditBalance(token string) *Balance {
+
+	conf := config.GetConfig()
+
+	req, err := http.NewRequest("GET", conf.Prexis.ApiURL+Credits, nil)
+	if err != nil {
+		log.Fatal("Error reading request. ", err)
+	}
+
+	headerValue := "Bearer " + token
+
+	req.Header.Set("Authorization", headerValue)
+
+	client := &http.Client{Timeout: time.Second * 2}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal("Error reading response. ", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal("Error reading body. ", err)
+	}
+
+	var response Balance
+
+	json.Unmarshal(body, &response)
 
 	return &response
 
