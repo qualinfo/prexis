@@ -6,25 +6,24 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 
 	config "../Configuration"
 )
 
 const (
-	Auth             = "/auth"
-	Credits          = "/credits"
-	RegisterHash     = "/registerhash"
-	RegisterDocument = "/registerdoc"
-	GetTransaction   = "/transaction"
+	Auth        = "/auth"
+	Credits     = "/credits"
+	Hash        = "/registerhash"
+	Document    = "/registerdoc"
+	Transaction = "/transaction"
 )
 
-func Authenticate() *Authentication {
+func Authenticate() *AuthenticationStruct {
 
 	config.Init()
 	conf := config.GetConfig()
 
-	var response Authentication
+	var response AuthenticationStruct
 
 	req, err := http.NewRequest("POST", conf.Prexis.ApiURL+Auth, nil)
 	if err != nil {
@@ -53,7 +52,7 @@ func Authenticate() *Authentication {
 
 }
 
-func CreditBalance(token string) *Balance {
+func CreditBalance(token string) *BalanceStruct {
 
 	conf := config.GetConfig()
 
@@ -66,7 +65,7 @@ func CreditBalance(token string) *Balance {
 
 	req.Header.Set("Authorization", headerValue)
 
-	client := &http.Client{Timeout: time.Second * 2}
+	client := &http.Client{}
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -79,7 +78,48 @@ func CreditBalance(token string) *Balance {
 		log.Fatal("Error reading body. ", err)
 	}
 
-	var response Balance
+	var response BalanceStruct
+
+	json.Unmarshal(body, &response)
+
+	return &response
+
+}
+
+func RegisterHash(token, hash string) *HashStruct {
+
+	conf := config.GetConfig()
+
+	req, err := http.NewRequest("POST", conf.Prexis.ApiURL+Hash, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	q := req.URL.Query()
+
+	q.Add("hash", hash)
+	q.Add("email", conf.Prexis.Email)
+
+	req.URL.RawQuery = q.Encode()
+
+	headerValue := "Bearer " + token
+
+	req.Header.Set("Authorization", headerValue)
+
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal("Error reading response. ", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal("Error reading body. ", err)
+	}
+
+	var response HashStruct
 
 	json.Unmarshal(body, &response)
 

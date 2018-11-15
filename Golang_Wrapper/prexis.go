@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"time"
-
-	prexis "./Interfaces"
 
 	config "./Configuration"
+	prexis "./Interfaces"
 )
 
 func main() {
@@ -15,10 +13,10 @@ func main() {
 
 	authenticate := prexis.Authenticate()
 
-	time.Sleep(2)
-
 	balance := prexis.CreditBalance(authenticate.Jwt)
+	hash := prexis.RegisterHash(authenticate.Jwt, "asasdasdasdad")
 
 	fmt.Println("Balance is: ", balance.Result.Credits)
+	fmt.Println("Result is: ", hash.Result.Message)
 
 }
