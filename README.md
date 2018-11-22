@@ -51,8 +51,8 @@ Insuficient credentials:
 **Important:**
 
 * The `jwt token` returned string is used to make the API requests;
-* The `jwt token` has to be used **one second after** the response to avoid service misuse;
-* These token last for **60 seconds**, after that, it's necessary to renew it;
+* The `jwt token` has to be used **01 (one) second after** the response to avoid service misuse;
+* These token last for **5 minutes** (300 seconds), after that, it's necessary to renew it;
 * The `chached` response is for internal use only.
 
 
@@ -129,7 +129,7 @@ None.
 
 ## Registering a Hash
 
-    POST https://prexis.io/api/v1/register
+    POST https://prexis.io/api/v1/registerhash
 
 Registers a valid SHA256 hash in Ethereum blockchain.
 
@@ -138,6 +138,7 @@ Registers a valid SHA256 hash in Ethereum blockchain.
 | Parameter Name | Parameter Value                                                |
 | -------------- | -------------------------------------------------------------- |
 | `hash`         | A valid SHA256 hash string without the `0x` prefix             |
+| `email`        | E-mail address to send the confirmation (optional)             |
 
 
 **Header:**
@@ -198,6 +199,76 @@ Invalid SHA256 hash format:
 }
 ```
 
+## Registering a Document
+
+    POST https://prexis.io/api/v1/registerdoc
+
+Registers a document hash in Ethereum blockchain and generates a unique link to download the file via IPFS and HTTPS.
+
+**Parameters:**
+
+| Parameter Name | Parameter Value                                                |
+| -------------- | -------------------------------------------------------------- |
+| `file`         | A binary file (Content-Type: multipart/form-data)              |
+| `email`        | E-mail address to send the confirmation (optional)             |
+
+
+**Header:**
+
+| Header Name     | Header Value                                                   |
+| --------------- | -------------------------------------------------------------- |
+| `Authorization` | `Bearer <jwt token>`                                           |
+
+
+**Response examples:**
+
+Successfull request:
+
+```javascript
+{
+	"code": 200,
+	"status": "success",
+	"current_time": 1539137849,
+	"result": {
+		"credits": 9,
+		"rescode": 200,
+		"message": "Operation successfull",
+		"hash": "ef1df95706603b4130d4a765906b42109fdb527fc49a1884f012c884c10c0ad9",
+		"ipfs": "QmPrcEGofvSt8kMrjSkp8cYuDY91JaiPmHgJ3i1MitsDZn"
+	}
+}
+```
+
+Document hash already registered:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "key": "<client key>",
+  "current_time": 1535980752,
+  "result": {
+    "rescode": 402,
+    "message": "Hash already registered",
+    "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
+
+Empty or invalid file:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "current_time": 1539078269,
+  "result": {
+    "rescode": 405,
+    "message": "File is empty"
+  }
+}
+```
+
 ## Get Blockchain Transaction
 
     POST https://prexis.io/api/v1/transaction
@@ -220,7 +291,7 @@ Returns the transactions info, like transaction and block hashes, block number, 
 
 **Response examples:**
 
-Transaction already mined in a block:
+Transaction already mined in a block without document (only hash):
 
 ```javascript
 {
@@ -243,6 +314,40 @@ Transaction already mined in a block:
     "rescode": 200,
     "message": "Operation successfull",
     "hash": "6aaf8f326d9d27d212e8647cbd1306dc1687f90595d0e6821e274d4d6312c387"
+  }
+}
+```
+
+Transaction already mined in a block with document:
+
+```javascript
+{
+  "code": 200,
+  "status": "success",
+  "current_time": 1539081946,
+  "result": {
+  "doc": {
+    "ipfs": "QmSFVQjx6nB69BELd8PFn3WUhWm6YwGAkbZUyfeeoAxejR",
+    "mimetype": "image\/png",
+    "original": "television-3.png",
+    "path": "docs\/e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d",
+    "sha256": "e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d",
+    "size": 46696
+  },
+  "transaction": {
+    "blockHash": "0x8c5efe643d01edbba1066f44cb080db1ccfcf8dcb81283c95136cf06496b30fa",
+    "blockNumber": 6482269,
+    "blockchainUrl": "https:\/\/etherscan.io\/tx\/0xfd960506052311615271cc56cdb78077ca1da79f9318b481b17d56b5f6a9a034",
+    "cumulativeGasUsed": 5753996,
+    "from": "0xe7b703865cd59a11dce5faff675f61da233b9bbe",
+    "gasUsed": 23176,
+    "timestamp": 1539081708,
+    "transactionHash": "0xfd960506052311415271cc56cdb78077ca1da79f9318b481b17d56b5f6a9a034",
+    "transactionIndex": 129
+  },
+  "rescode": 200,
+   "message": "Operation successfull",
+   "hash": "e9f68371c915bdfd113c47651095aed44f4f1ac92f4af673624c97f1e696d43d"
   }
 }
 ```
