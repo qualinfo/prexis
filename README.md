@@ -2,7 +2,7 @@
 
 ## Authentication
 
-    POST https://prexis.io/api/v1/auth
+    POST https://app.prexis.io/api/v1/auth
 
 Returns the JWT token.
 
@@ -62,7 +62,7 @@ The token must be in the header of every request.
 
 **Example:**
 
-    curl --header "Authorization: Bearer <jwt token>" http://prexis.io/api/v1/credits
+    curl --header "Authorization: Bearer <jwt token>" https://app.prexis.io/api/v1/credits
     
 Please notice the space between the `Bearer` string and the `jwt token`.
 
@@ -97,7 +97,7 @@ If the token has been used too soon:
 
 ## Credit Balance
 
-    GET https://prexis.io/api/v1/credits
+    GET https://app.prexis.io/api/v1/credits
 
 Returns the credit balance.
 
@@ -129,7 +129,7 @@ None.
 
 ## Registering a Hash
 
-    POST https://prexis.io/api/v1/registerhash
+    POST https://app.prexis.io/api/v1/registerhash
 
 Registers a valid SHA256 hash in Ethereum blockchain.
 
@@ -201,7 +201,7 @@ Invalid SHA256 hash format:
 
 ## Registering a Document
 
-    POST https://prexis.io/api/v1/registerdoc
+    POST https://app.prexis.io/api/v1/registerdoc
 
 Registers a document hash in Ethereum blockchain and generates a unique link to download the file via IPFS and HTTPS.
 
@@ -271,7 +271,7 @@ Empty or invalid file:
 
 ## Get Blockchain Transaction
 
-    POST https://prexis.io/api/v1/transaction
+    POST https://app.prexis.io/api/v1/transaction
 
 Returns the transactions info, like transaction and block hashes, block number, timestamp, etc.
 
